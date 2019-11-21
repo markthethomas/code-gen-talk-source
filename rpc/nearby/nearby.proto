@@ -1,0 +1,21 @@
+syntax = "proto3";
+package floqars.services.nearby;
+option go_package = "nearby";
+
+message NearbyRequest {
+  float lat = 1;
+  float lng = 2;
+}
+message NearbyReply { repeated string ids = 1; }
+
+message UpdateLocationRequest {
+  string id = 1;
+  float lat = 2;
+  float lng = 3;
+}
+message UpdateLocationReply { bool success = 1; }
+
+service Nearby {
+  rpc FindNearby(NearbyRequest) returns (NearbyReply);
+  rpc UpdateLocation(UpdateLocationRequest) returns (UpdateLocationReply);
+}

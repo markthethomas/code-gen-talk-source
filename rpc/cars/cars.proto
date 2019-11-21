@@ -1,0 +1,25 @@
+syntax = "proto3";
+package floqars.services.cars;
+option go_package = "cars";
+
+message CarRequest { string id = 1; }
+message CreateCarRequest {
+  string user_id = 1;
+  string make = 2;
+  string model = 3;
+  int64 year = 4;
+}
+message Car {
+  string id = 1;
+  string user_id = 2;
+  string make = 3;
+  string model = 4;
+  int64 year = 5;
+  int64 lat = 6;
+  int64 lng = 7;
+}
+
+service Cars {
+  rpc GetCar(CarRequest) returns (Car);
+  rpc CreateCar(CreateCarRequest) returns (Car);
+}
